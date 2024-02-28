@@ -29,6 +29,15 @@ tape("should decode base64", (t) => {
   });
 });
 
+tape("should return user-agent", (t) => {
+  jsonist.get(`${urlBase}/user-agent`, (err, body) => {
+    if (err) t.error(err);
+
+    t.ok(body.userAgent, "User agent should be present in the response");
+    t.end();
+  });
+});
+
 tape("cleanup", function (t) {
   server.close();
   t.end();
